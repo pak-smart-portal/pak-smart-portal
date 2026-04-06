@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punjab Computer Academy - Master Portal</title>
+    <style>
+        :root {
+            --primary: #0a2351;
+            --secondary: #1a73e8;
+            --accent: #ffc107;
+            --bg: #f4f7fa;
+            --white: #ffffff;
+        }
+
+        body { 
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg); 
+            margin: 0; 
+            padding: 0; 
+            color: #333;
+        }
+
+        /* Top Header Design */
+        header { 
+            background: linear-gradient(135deg, var(--primary), var(--secondary)); 
+            color: var(--white); 
+            padding: 35px 20px; 
+            border-bottom-left-radius: 40px; 
+            border-bottom-right-radius: 40px; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        header h2 { margin: 0; font-size: 26px; letter-spacing: 1px; text-transform: uppercase; }
+        header p { margin: 8px 0 0; font-size: 14px; opacity: 0.9; font-weight: 300; }
+
+        .section-title { 
+            margin: 25px 20px 10px; 
+            text-align: left; 
+            color: var(--primary); 
+            font-size: 18px;
+            font-weight: 700; 
+            display: flex;
+            align-items: center;
+        }
+        .section-title::before {
+            content: "";
+            width: 5px;
+            height: 20px;
+            background: var(--accent);
+            margin-right: 10px;
+            border-radius: 10px;
+        }
+
+        /* Main Grid Design */
+        .grid-container { 
+            padding: 15px; 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
+
+        .card { 
+            background: var(--white); 
+            padding: 20px 15px; 
+            border-radius: 24px; 
+            text-decoration: none; 
+            color: var(--primary); 
+            box-shadow: 0 6px 15px rgba(0,0,0,0.05); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .card:active { transform: scale(0.95); }
+
+        .card span { font-size: 30px; margin-bottom: 10px; }
+        .card b { font-size: 15px; }
+
+        /* WhatsApp Button Customization */
+        .wa-btn { 
+            background: linear-gradient(135deg, #25D366, #128C7E); 
+            color: white; 
+            margin: 20px auto; 
+            padding: 18px; 
+            border-radius: 20px; 
+            font-weight: bold; 
+            font-size: 18px; 
+            border: none;
+            box-shadow: 0 8px 20px rgba(37,211,102,0.3); 
+            width: 88%; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        /* Full Page Popups */
+        .full-page { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background: var(--bg); 
+            z-index: 1000; 
+            overflow-y: auto; 
+            padding: 20px; 
+            box-sizing: border-box; 
+            animation: slideIn 0.3s ease-out;
+        }
+
+        @keyframes slideIn { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .sticky-nav { 
+            position: sticky; top: -20px; background: var(--bg); 
+            padding: 15px 0; border-bottom: 1px solid #ddd; 
+            z-index: 1001; display: flex; justify-content: space-between; align-items: center; 
+        }
+
+        .close-btn { 
+            background: #ff4757; color: white; padding: 10px 20px; 
+            border: none; border-radius: 12px; font-weight: bold; cursor: pointer; 
+        }
+
+        .content-box { 
+            background: var(--white); padding: 18px; margin-bottom: 15px; 
+            border-radius: 15px; border-left: 6px solid var(--secondary); 
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .ans { color: #2ed573; font-weight: bold; display: block; margin-top: 6px; font-size: 15px; }
+
+        .tag { 
+            font-size: 10px; background: #eef2f7; color: var(--secondary); 
+            padding: 3px 10px; border-radius: 12px; margin-bottom: 8px; font-weight: bold; 
+        }
+
+        footer { padding: 30px; color: #888; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h2>Punjab Computer Academy</h2>
+    <p>Admin: Arslan Rafiq | Near Boys High School, Abdul Hakim</p>
+</header>
+
+<div class="section-title">Digital Services Portal</div>
+<div class="grid-container">
+    <div onclick="togglePage('jobPage', true)" class="card"><span>💼</span><b>Govt Jobs</b></div>
+    <div onclick="togglePage('pmPage', true)" class="card"><span>🇵🇰</span><b>PM Schemes</b></div>
+    <div onclick="togglePage('studyPage', true)" class="card"><span>📚</span><b>100 MCQs</b></div>
+    <div onclick="togglePage('billPage', true)" class="card"><span>💡</span><b>Bill Portal</b></div>
+</div>
+
+<button class="wa-btn" onclick="openWhatsApp()">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="25" alt="WA">
+    Contact on WhatsApp
+</button>
+
+<div id="jobPage" class="full-page">
+    <div class="sticky-nav">
+        <h3 style="color:var(--primary); margin:0;">All Pakistan Jobs</h3>
+        <button class="close-btn" onclick="togglePage('jobPage', false)">Close</button>
+    </div>
+    <div class="grid-container">
+        <a href="https://joinpakarmy.gov.pk/" target="_blank" class="card"><span class="tag">Army</span><b>Pak Army</b></a>
+        <a href="https://joinpaknavy.gov.pk/" target="_blank" class="card"><span class="tag">Navy</span><b>Pak Navy</b></a>
+        <a href="https://joinpaf.gov.pk/" target="_blank" class="card"><span class="tag">PAF</span><b>Air Force</b></a>
+        <a href="https://ppsc.gop.pk/" target="_blank" class="card"><span class="tag">Punjab</span><b>PPSC</b></a>
+        <a href="https://fpsc.gov.pk/" target="_blank" class="card"><span class="tag">Federal</span><b>FPSC</b></a>
+        <a href="https://joinasf.gov.pk/" target="_blank" class="card"><span class="tag">ASF</span><b>Airport Security</b></a>
+        <a href="https://nts.org.pk/" target="_blank" class="card"><span class="tag">NTS</span><b>Testing Service</b></a>
+        <a href="https://www.njp.gov.pk/" target="_blank" class="card"><span class="tag">NJP</span><b>Govt Jobs</b></a>
+    </div>
+</div>
+
+<div id="pmPage" class="full-page">
+    <div class="sticky-nav">
+        <h3 style="color:var(--primary); margin:0;">PM & Govt Schemes</h3>
+        <button class="close-btn" onclick="togglePage('pmPage', false)">Close</button>
+    </div>
+    <div class="grid-container" style="grid-template-columns: 1fr;">
+        <a href="https://pmyp.gov.pk/" target="_blank" class="card" style="flex-direction: row; justify-content: start; gap: 15px;"><span>💻</span><b>PM Laptop Scheme</b></a>
+        <a href="https://pmyp.gov.pk/pmyas" target="_blank" class="card" style="flex-direction: row; justify-content: start; gap: 15px;"><span>💰</span><b>Youth Business Loan</b></a>
+        <a href="https://8171.pass.gov.pk/" target="_blank" class="card" style="flex-direction: row; justify-content: start; gap: 15px;"><span>🆔</span><b>BISP / Ehsaas 8171</b></a>
+        <a href="https://naivtc.gov.pk/" target="_blank" class="card" style="flex-direction: row; justify-content: start; gap: 15px;"><span>🛠</span><b>NAVTTC Skill Courses</b></a>
+        <a href="https://e-rozgaar.pitb.gov.pk/" target="_blank" class="card" style="flex-direction: row; justify-content: start; gap: 15px;"><span>🚀</span><b>e-Rozgaar Program</b></a>
+    </div>
+</div>
+
+<div id="billPage" class="full-page">
+    <div class="sticky-nav">
+        <h3 style="color:var(--primary); margin:0;">Check Online Bills</h3>
+        <button class="close-btn" onclick="togglePage('billPage', false)">Close</button>
+    </div>
+    <div class="grid-container">
+        <a href="https://bill.pitc.com.pk/mepcobill" target="_blank" class="card"><b>MEPCO Bill</b></a>
+        <a href="https://bill.pitc.com.pk/lescobill" target="_blank" class="card"><b>LESCO Bill</b></a>
+        <a href="https://bill.pitc.com.pk/fescobill" target="_blank" class="card"><b>FESCO Bill</b></a>
+        <a href="https://dbill.ptcl.net.pk/" target="_blank" class="card"><b>PTCL Bill</b></a>
+        <a href="https://www.sngpl.com.pk/" target="_blank" class="card"><b>Sui Gas Bill</b></a>
+    </div>
+</div>
+
+<div id="studyPage" class="full-page">
+    <div class="sticky-nav">
+        <h3 style="color:var(--primary); margin:0;">100 MCQs (Computer)</h3>
+        <button class="close-btn" onclick="togglePage('studyPage', false)">Close</button>
+    </div>
+    <div id="mcq-list"></div>
+</div>
+
+<script>
+    function togglePage(id, show) {
+        const page = document.getElementById(id);
+        page.style.display = show ? 'block' : 'none';
+        if(show) document.body.style.overflow = 'hidden';
+        else document.body.style.overflow = 'auto';
+    }
+
+    function openWhatsApp() {
+        window.open("https://wa.me/923001880556", "_blank");
+    }
+
+    const mcqs = [
+        ["Brain of Computer?", "CPU"], ["RAM stands for?", "Random Access Memory"], ["ROM stands for?", "Read Only Memory"],
+        ["1 GB = ?", "1024 MB"], ["Father of Computer?", "Charles Babbage"], ["WWW?", "World Wide Web"],
+        ["Physical parts?", "Hardware"], ["Main board?", "Motherboard"], ["Keyboard?", "Input Device"],
+        ["Printer?", "Output Device"], ["1 Byte = ?", "8 Bits"], ["Temporary memory?", "RAM"],
+        ["URL?", "Uniform Resource Locator"], ["USB?", "Universal Serial Bus"], ["BIOS?", "Basic Input Output System"],
+        ["Father of Internet?", "Vint Cerf"], ["First Language?", "FORTRAN"], ["PDF?", "Portable Document Format"],
+        ["Google is?", "Search Engine"], ["Facebook founder?", "Mark Zuckerberg"], ["Windows?", "Operating System"],
+        ["MS Word?", "Typing"], ["Excel?", "Calculations"], ["PowerPoint?", "Presentations"],
+        ["Smallest unit?", "Bit"], ["CD capacity?", "700 MB"], ["DVD capacity?", "4.7 GB"],
+        ["LAN?", "Local Area Network"], ["WAN?", "Wide Area Network"], ["IP?", "Internet Protocol"],
+        ["HTML?", "Hypertext Markup Language"], ["HTTP?", "Hypertext Transfer Protocol"], ["1 TB = ?", "1024 GB"],
+        ["Microsoft Founder?", "Bill Gates"], ["Mouse Founder?", "Douglas Engelbart"], ["Fastest memory?", "Cache"],
+        ["Monitor is?", "VDU"], ["Permanent memory?", "ROM"], ["Input Device?", "Scanner"], ["Output Device?", "Speaker"],
+        ["OS example?", "Linux"], ["Browser?", "Chrome"], ["Cell unit?", "Spreadsheet"], ["Binary?", "0 and 1"],
+        ["ALU?", "Arithmetic Logic Unit"], ["CU?", "Control Unit"], ["Modem?", "Internet"], ["Email Founder?", "Ray Tomlinson"],
+        ["Junk mail?", "Spam"], ["PC?", "Personal Computer"], ["WiFi?", "Wireless Fidelity"], ["LCD?", "Liquid Crystal Display"],
+        ["LED?", "Light Emitting Diode"], ["1st Super Computer?", "CDC 6600"], ["Largest unit?", "Geopbyte"],
+        ["Keys?", "104"], ["Virus?", "Vital Info Resources Under Seize"], ["PNG?", "Image Format"], ["MP3?", "Audio"],
+        ["MP4?", "Video"], ["Refresh?", "F5"], ["Help?", "F1"], ["Save As?", "F12"], ["Rename?", "F2"],
+        ["Undo?", "Ctrl+Z"], ["Redo?", "Ctrl+Y"], ["Cut?", "Ctrl+X"], ["Print?", "Ctrl+P"], ["New?", "Ctrl+N"],
+        ["Open?", "Ctrl+O"], ["CPU Heart?", "ALU"], ["Dot Matrix?", "Printer"], ["Laser?", "Printer"], ["Joystick?", "Games"],
+        ["Trackball?", "Input"], ["MICR?", "Bank Cheques"], ["OMR?", "Answer Sheets"], ["1 Nibble?", "4 Bits"],
+        ["Compiler?", "Translator"], ["Assembler?", "Translator"], ["C++?", "High Level"], ["Machine?", "Low Level"],
+        ["RAM?", "Volatile"], ["ROM?", "Non-Volatile"], ["Mother of Computer?", "Ada Lovelace"], ["Programmer?", "Ada Lovelace"],
+        ["LinkedIn?", "Social Network"], ["Cloud?", "Google Drive"], ["Main Memory?", "RAM"], ["Secondary?", "HDD/SSD"],
+        ["Delete?", "Remove text"], ["Backspace?", "Remove left"], ["Caps Lock?", "Toggle"], ["Shift?", "Modifier"],
+        ["Home?", "Start"], ["End?", "End of line"], ["Tab?", "Space"], ["Esc?", "Cancel"], ["BIOS Location?", "ROM"],
+        ["Best Academy?", "Punjab Computer Academy Abdul Hakim"]
+    ];
+
+    const container = document.getElementById('mcq-list');
+    mcqs.forEach((item, index) => {
+        container.innerHTML += `<div class="content-box"><b>${index + 1}. ${item[0]}</b><span class="ans">Ans: ${item[1]}</span></div>`;
+    });
+</script>
+
+<footer>
+    &copy; 2026 Punjab Computer Academy | Designed for Success
+</footer>
+
+</body>
+</html>
